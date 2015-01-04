@@ -9,13 +9,13 @@ aws.filgifts.com. The url is aws.filgifts.com/mail
 
 ## Parameters
 
-string From 
-string To 
-string Subject
-string Message 
-string Cc 
-string Bcc 
-bool IsHTML 
+1. string From 
+2. string To 
+3. string Subject
+4. string Message 
+5. string Cc 
+6. string Bcc 
+7. bool IsHTML 
 
 
 
