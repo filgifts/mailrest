@@ -1,0 +1,17 @@
+C:\fray\oprojects\mailrest\mailrest\obj\Debug\mailrest.csprojResolveAssemblyReference.cache
+C:\fray\oprojects\mailrest\mailrest\bin\mailrest.dll.config
+C:\fray\oprojects\mailrest\mailrest\bin\mailrest.dll
+C:\fray\oprojects\mailrest\mailrest\bin\mailrest.pdb
+C:\fray\oprojects\mailrest\mailrest\bin\ServiceStack.Common.dll
+C:\fray\oprojects\mailrest\mailrest\bin\ServiceStack.dll
+C:\fray\oprojects\mailrest\mailrest\bin\ServiceStack.Interfaces.dll
+C:\fray\oprojects\mailrest\mailrest\bin\ServiceStack.Redis.dll
+C:\fray\oprojects\mailrest\mailrest\bin\ServiceStack.ServiceInterface.dll
+C:\fray\oprojects\mailrest\mailrest\bin\ServiceStack.Text.dll
+C:\fray\oprojects\mailrest\mailrest\bin\ServiceStack.xml
+C:\fray\oprojects\mailrest\mailrest\bin\ServiceStack.Common.xml
+C:\fray\oprojects\mailrest\mailrest\bin\ServiceStack.Interfaces.xml
+C:\fray\oprojects\mailrest\mailrest\bin\ServiceStack.Redis.xml
+C:\fray\oprojects\mailrest\mailrest\bin\ServiceStack.Text.xml
+C:\fray\oprojects\mailrest\mailrest\obj\Debug\mailrest.dll
+C:\fray\oprojects\mailrest\mailrest\obj\Debug\mailrest.pdb
