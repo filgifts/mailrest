@@ -10,6 +10,7 @@ using System.Net.Mime;
 using System.Net;
 using System.Configuration;
 using System.ComponentModel;
+using System.Threading;
 
 namespace mailSender
 {
@@ -22,81 +23,105 @@ namespace mailSender
                 var mails = dbFactory.GetMailByStatus(1);
                 foreach (var mail in mails)
                 {
-                    dbFactory.UpdateMailStatus(mail.Id, 2)
-                    SendMail(mail);
+                    dbFactory.UpdateMailStatus(mail.Id, 2);
                 }
+
+                SendMail(mails);
             }
         }
 
-        private static void SendCompletedCallback(object sender, AsyncCompletedEventArgs e)
+        private static void SendMail(List<MailDetails> mails)
         {
-            using (var dbFactory = new MailData.DataFactory(ConfigurationManager.ConnectionStrings["filgiftsMail"].ConnectionString))
+            foreach (var mail in mails)
             {
-                var id = (int)e.UserState;
-                if (e.Error != null)
-                {
-                    dbFactory.UpdateMailStatus(id, -1);
-                }
-                else
-                {
-                    dbFactory.UpdateMailStatus(id, 0);
-                }
+                Send(mail);
             }
         }
 
-        private static void SendMail(MailDetails request)
+        private static void Send(MailDetails request)
         {
-            var message = new MailMessage(request.From, request.To);
-            message.Subject = request.Subject;
-
-            message.Body = request.Message;
-
-            if (!string.IsNullOrEmpty(request.Cc))
+            using (ManualResetEvent waitHandle = new ManualResetEvent(false)) // handle blocking of asynchronous sending
             {
-                message.CC.Add(new MailAddress(request.Cc));
-            }
-            if (!string.IsNullOrEmpty(request.Bcc))
-            {
-                if (request.Bcc.Contains(","))
+                var message = new MailMessage(request.From, request.To);
+                message.Subject = request.Subject;
+
+                message.Body = request.Message;
+
+                if (!string.IsNullOrEmpty(request.Cc))
                 {
-                    var bccs = request.Bcc.Split(',');
-                    foreach (var item in bccs)
+                    message.CC.Add(new MailAddress(request.Cc));
+                }
+                if (!string.IsNullOrEmpty(request.Bcc))
+                {
+                    if (request.Bcc.Contains(","))
                     {
-                        message.Bcc.Add(new MailAddress(item));
+                        var bccs = request.Bcc.Split(',');
+                        foreach (var item in bccs)
+                        {
+                            message.Bcc.Add(new MailAddress(item));
+                        }
+                    }
+                    else
+                    {
+                        message.Bcc.Add(new MailAddress(request.Bcc));
                     }
                 }
-                else
+                if (request.IsHTML)
                 {
-                    message.Bcc.Add(new MailAddress(request.Bcc));
+                    message.IsBodyHtml = true;
                 }
-            }
-            if (request.IsHTML)
-            {
-                message.IsBodyHtml = true;
-            }
 
-            var smtp = new SmtpClient();
-            smtp.Host = ConfigurationManager.AppSettings["smtphost"];
-            smtp.Port = int.Parse(ConfigurationManager.AppSettings["smtpport"]);
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["smtpusername"], ConfigurationManager.AppSettings["smtppassword"]);
-            smtp.EnableSsl = true;
-            smtp.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
-            smtp.SendCompleted += (s, e) =>
-            {
-                message.Dispose();
-                smtp.Dispose();
-            };
-            var token = request.Id;
-            try
-            {
-                smtp.SendAsync(message, token);
+                var smtp = new SmtpClient();
+                smtp.Host = ConfigurationManager.AppSettings["smtphost"];
+                smtp.Port = int.Parse(ConfigurationManager.AppSettings["smtpport"]);
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["smtpusername"], ConfigurationManager.AppSettings["smtppassword"]);
+                smtp.EnableSsl = true;
+                var token = request.Id;
+
+                smtp.SendCompleted += (s, e) =>
+                {
+                    using (var dbFactory = new MailData.DataFactory(ConfigurationManager.ConnectionStrings["filgiftsMail"].ConnectionString))
+                    {
+                        var id = (int)e.UserState;
+                        if (e.Error != null)
+                        {
+                            dbFactory.UpdateMailStatus(id, -1);
+                            
+                            var mailError = new MailError
+                            {
+                                Message = e.Error.Message,
+                                Source = e.Error.Source,
+                                StackTrace = e.Error.StackTrace,
+                                EmailId = id
+                            };
+                            dbFactory.LogMailError(mailError); // log error
+                        }
+                        else
+                        {
+                            dbFactory.UpdateMailStatus(id, 0);
+                        }
+                    }
+                    waitHandle.Set(); // tell handler that sending completed
+                };
+
+                smtp.SendCompleted += (s, e) =>
+                {
+                    message.Dispose();
+                    smtp.Dispose();
+                };
+
+                try
+                {
+                    smtp.SendAsync(message, token);
+                }
+                catch (SmtpException e)
+                {
+                    var errormessage = e.StatusCode;
+                }
+                waitHandle.WaitOne(); // tell handler to wait until sending completed
             }
-            catch (SmtpException e)
-            {
-                var errormessage = e.StatusCode;
-            }
-            Console.ReadLine();
         }
     }
+
 }

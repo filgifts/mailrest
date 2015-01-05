@@ -26,11 +26,17 @@ namespace MailData
         public void Initialize()
         {
             _db.CreateTableIfNotExists<MailDetails>();
+            _db.CreateTableIfNotExists<MailError>();
         }
 
         public void AddMailMessage(MailDetails mailDetails)
         {
             _db.Insert<MailDetails>(mailDetails);
+        }
+
+        public void LogMailError(MailError mailError)
+        {
+            _db.Insert<MailError>(mailError);
         }
 
         public List<MailDetails> GetMailByStatus(int status)
