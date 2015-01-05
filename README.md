@@ -25,12 +25,12 @@ Has two tables:
 
 ## MailRest
 
-Currently configured as a virtual directory ####MailAPI in aws.filgifts.com 
+Currently configured as a virtual directory **MailAPI** in aws.filgifts.com 
 
 Directory : D:\Web\MailAPI
 Url: [http://aws.filgifts.com/MailAPI](http://aws.filgifts.com/MailAPI)
 
-### Parameters
+**Parameters**
  
 1. string From 
 2. string To 
@@ -40,9 +40,9 @@ Url: [http://aws.filgifts.com/MailAPI](http://aws.filgifts.com/MailAPI)
 6. string Bcc 
 7. bool IsHTML 
 
-### Security
+**Security**
 
-the website is accessible only from the IP remote IP address specified in the ####web.config
+the website is accessible only from the IP remote IP address specified in the **web.config**
 
 ```
 <add key="whiteListIP" value="::1,127.0.0.1,54.148.60.59,202.95.228.224"/>
