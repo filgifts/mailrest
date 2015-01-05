@@ -6,16 +6,19 @@ This is a REST API to send email. This was initially created as an alternative w
 The website is currently hosted in Amazon EC2 (54.148.60.59) and setup as a virtual application under
 aws.filgifts.com. The url is aws.filgifts.com/mail
 
+The application consist of 3 parts:
+1. MailData - Database read/write
+2. MailRest - Web Service API that receives mail request
+3. MailSender - Standalone console application that sends the mail
 
-## Parameters
 
-1. string From 
-2. string To 
-3. string Subject
-4. string Message 
-5. string Cc 
-6. string Bcc 
-7. bool IsHTML 
+## MailData
+
+Database - FilgiftsMail
+
+Has two tables
+1. MailDetails - contains all the mails
+2. MailError - contains details of error
 
 
 
