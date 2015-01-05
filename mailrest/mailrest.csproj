@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="MailService.cs" />
     <Compile Include="Model\MailMessage.cs" />
+    <Compile Include="Module\WhitelistIP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
