@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mailrest", "mailrest\mailrest.csproj", "{B7762E3B-BB58-4518-8458-D29BC06D07B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailData", "MailData\MailData.csproj", "{BA143AEF-2022-450B-9972-8DC83E1155D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mailSender", "mailSender\mailSender.csproj", "{3D4AA188-D68A-4E75-BC60-B8B6A63B139F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{B7762E3B-BB58-4518-8458-D29BC06D07B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7762E3B-BB58-4518-8458-D29BC06D07B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7762E3B-BB58-4518-8458-D29BC06D07B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA143AEF-2022-450B-9972-8DC83E1155D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA143AEF-2022-450B-9972-8DC83E1155D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA143AEF-2022-450B-9972-8DC83E1155D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA143AEF-2022-450B-9972-8DC83E1155D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D4AA188-D68A-4E75-BC60-B8B6A63B139F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D4AA188-D68A-4E75-BC60-B8B6A63B139F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D4AA188-D68A-4E75-BC60-B8B6A63B139F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D4AA188-D68A-4E75-BC60-B8B6A63B139F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

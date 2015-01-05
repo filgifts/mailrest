@@ -1,0 +1,14 @@
+C:\fray\OProjects\mailrest\mailSender\obj\Debug\mailSender.csprojResolveAssemblyReference.cache
+C:\fray\OProjects\mailrest\mailSender\bin\Debug\mailSender.exe.config
+C:\fray\OProjects\mailrest\mailSender\bin\Debug\mailSender.exe
+C:\fray\OProjects\mailrest\mailSender\bin\Debug\mailSender.pdb
+C:\fray\OProjects\mailrest\mailSender\bin\Debug\MailData.dll
+C:\fray\OProjects\mailrest\mailSender\bin\Debug\ServiceStack.OrmLite.dll
+C:\fray\OProjects\mailrest\mailSender\bin\Debug\ServiceStack.OrmLite.SqlServer.dll
+C:\fray\OProjects\mailrest\mailSender\bin\Debug\ServiceStack.Interfaces.dll
+C:\fray\OProjects\mailrest\mailSender\bin\Debug\ServiceStack.Text.dll
+C:\fray\OProjects\mailrest\mailSender\bin\Debug\MailData.pdb
+C:\fray\OProjects\mailrest\mailSender\bin\Debug\ServiceStack.Interfaces.xml
+C:\fray\OProjects\mailrest\mailSender\bin\Debug\ServiceStack.Text.xml
+C:\fray\OProjects\mailrest\mailSender\obj\Debug\mailSender.exe
+C:\fray\OProjects\mailrest\mailSender\obj\Debug\mailSender.pdb

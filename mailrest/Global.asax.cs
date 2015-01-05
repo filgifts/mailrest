@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using ServiceStack.WebHost.Endpoints;
+using System.Configuration;
 
 namespace mailrest
 {
@@ -26,6 +27,10 @@ namespace mailrest
         protected void Application_Start(object sender, EventArgs e)
         {
             new MailMessageAppHost().Init();
+            using (var dbFactory = new MailData.DataFactory(ConfigurationManager.ConnectionStrings["filgiftsMail"].ConnectionString))
+            {
+                dbFactory.Initialize();
+            }
         }
 
         protected void Session_Start(object sender, EventArgs e)

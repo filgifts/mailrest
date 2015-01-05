@@ -15,3 +15,7 @@ C:\fray\oprojects\mailrest\mailrest\bin\ServiceStack.Redis.xml
 C:\fray\oprojects\mailrest\mailrest\bin\ServiceStack.Text.xml
 C:\fray\oprojects\mailrest\mailrest\obj\Debug\mailrest.dll
 C:\fray\oprojects\mailrest\mailrest\obj\Debug\mailrest.pdb
+C:\fray\OProjects\mailrest\mailrest\bin\MailData.dll
+C:\fray\OProjects\mailrest\mailrest\bin\ServiceStack.OrmLite.dll
+C:\fray\OProjects\mailrest\mailrest\bin\ServiceStack.OrmLite.SqlServer.dll
+C:\fray\OProjects\mailrest\mailrest\bin\MailData.pdb
