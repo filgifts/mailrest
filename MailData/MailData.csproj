@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataFactory.cs" />
+    <Compile Include="Model\AccessLogs.cs" />
     <Compile Include="Model\MailDetails.cs" />
     <Compile Include="Model\MailError.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

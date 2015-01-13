@@ -27,11 +27,21 @@ namespace MailData
         {
             _db.CreateTableIfNotExists<MailDetails>();
             _db.CreateTableIfNotExists<MailError>();
+            _db.CreateTableIfNotExists<AccessLogs>();
         }
 
         public void AddMailMessage(MailDetails mailDetails)
         {
             _db.Insert<MailDetails>(mailDetails);
+        }
+
+        public void AddAccessLog(string remoteIP)
+        {
+            var access = new AccessLogs
+            {
+                RemoteIP = remoteIP
+            };
+            _db.Insert<AccessLogs>(access);
         }
 
         public void LogMailError(MailError mailError)

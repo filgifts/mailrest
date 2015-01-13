@@ -47,6 +47,11 @@ namespace mailSender
 
                 message.Body = request.Message;
 
+                if (!string.IsNullOrEmpty(request.ReplyTo))
+                {
+                    message.ReplyToList.Add(new MailAddress(request.ReplyTo));
+                }
+
                 if (!string.IsNullOrEmpty(request.Cc))
                 {
                     message.CC.Add(new MailAddress(request.Cc));
@@ -76,7 +81,7 @@ namespace mailSender
                 smtp.Port = int.Parse(ConfigurationManager.AppSettings["smtpport"]);
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["smtpusername"], ConfigurationManager.AppSettings["smtppassword"]);
-                smtp.EnableSsl = true;
+                smtp.EnableSsl = ConfigurationManager.AppSettings["smtpusername"].ToLower() == "true";
                 var token = request.Id;
 
                 smtp.SendCompleted += (s, e) =>

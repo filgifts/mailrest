@@ -27,10 +27,14 @@ namespace mailrest.Module
             var whitelistIPConfig = (string)ConfigurationManager.AppSettings["whiteListIP"];
             var whiteListIPs = whitelistIPConfig.Split(',');
 
-            string remoteIPAddress = application.Context.Request.ServerVariables["REMOTE_ADDR"];
+            string remoteIPAddress = application.Context.Request.ServerVariables["REMOTE_ADDR"];      
 
             if (!whiteListIPs.Contains(remoteIPAddress))
             {
+                using (var dbFactory = new MailData.DataFactory(ConfigurationManager.ConnectionStrings["filgiftsMail"].ConnectionString))
+                {
+                    dbFactory.AddAccessLog(remoteIPAddress);
+                } 
                 application.Context.Response.StatusCode = 404;
                 application.Context.Response.SuppressContent = true;
                 application.Context.Response.End();

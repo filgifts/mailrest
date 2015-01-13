@@ -14,6 +14,7 @@ namespace mailrest.Model
     {
         public string From {get; set;}
         public string To { get; set; }
+        public string ReplyTo { get; set; }
         public string Subject { get; set; }
         public string Message { get; set; }
         public string Cc { get; set; }
